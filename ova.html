@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Aplikasi Keuangan</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Aplikasi Keuangan</h1>
+            <div class="tabs">
+                <button class="tab active" onclick="openTab('pemasukan')">
+                    Pemasukan
+                </button>
+                <button class="tab" onclick="openTab('budgeting')">
+                    Budgeting
+                </button>
+                <button class="tab" onclick="openTab('pengeluaran')">
+                    Pengeluaran
+                </button>
+            </div>
+
+            <div class="tab-content">
+                <div id="pemasukan" class="tab-pane active">
+                    <form action="#">
+                        <label for="nominal_uang">Nominal Uang:</label>
+                        <input
+                            type="number"
+                            id="nominal_uang"
+                            name="nominal_uang"
+                            required
+                        />
+                        <button type="submit">Simpan</button>
+                    </form>
+                </div>
+
+                <div id="budgeting" class="tab-pane">
+                    <form action="#">
+                        <label for="nama_kategori">Nama Kategori:</label>
+                        <input
+                            type="text"
+                            id="nama_kategori"
+                            name="nama_kategori"
+                            required
+                        />
+
+                        <label for="tipe_budget">Tipe Budget:</label>
+                        <select id="tipe_budget" name="tipe_budget">
+                            <option value="persen">Persen</option>
+                            <option value="nominal">Nominal</option>
+                        </select>
+
+                        <label for="periode_budget">Periode Budget:</label>
+                        <select id="periode_budget" name="periode_budget">
+                            <option value="mingguan">Mingguan</option>
+                            <option value="bulanan">Bulanan</option>
+                        </select>
+
+                        <label for="nominal_budget">Nominal Budget:</label>
+                        <input
+                            type="number"
+                            id="nominal_budget"
+                            name="nominal_budget"
+                            required
+                        />
+
+                        <button type="submit">Simpan</button>
+                    </form>
+                </div>
+
+                <div id="pengeluaran" class="tab-pane">
+                    <form action="#">
+                        <label for="nominal_pengeluaran"
+                            >Nominal Pengeluaran:</label
+                        >
+                        <input
+                            type="number"
+                            id="nominal_pengeluaran"
+                            name="nominal_pengeluaran"
+                            required
+                        />
+
+                        <label for="kategori_pengeluaran"
+                            >Kategori Pengeluaran:</label
+                        >
+                        <select
+                            id="kategori_pengeluaran"
+                            name="kategori_pengeluaran"
+                        >
+                            <option value="makanan">Makanan</option>
+                            <option value="transportasi">Transportasi</option>
+                            <option value="hiburan">Hiburan</option>
+                            <option value="lainnya">Lainnya</option>
+                        </select>
+
+                        <label for="deskripsi_pengeluaran"
+                            >Deskripsi Pengeluaran:</label
+                        >
+                        <input
+                            type="text"
+                            id="deskripsi_pengeluaran"
+                            name="deskripsi_pengeluaran"
+                        />
+
+                        <button type="submit">Simpan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Function to handle form submission for Budgeting
+            document
+                .getElementById("form-budgeting")
+                .addEventListener("submit", function (event) {
+                    event.preventDefault(); // Prevent form submission
+                    var nama_kategori =
+                        document.getElementById("nama_kategori").value;
+                    var tipe_budget =
+                        document.getElementById("tipe_budget").value;
+                    var periode_budget =
+                        document.getElementById("periode_budget").value;
+                    var nominal_budget =
+                        document.getElementById("nominal_budget").value;
+                    // Lakukan sesuatu dengan nilai-nilai yang telah ditangkap, misalnya simpan ke database atau tampilkan pesan
+                    console.log(
+                        "Nama Kategori: " +
+                            nama_kategori +
+                            ", Tipe Budget: " +
+                            tipe_budget +
+                            ", Periode Budget: " +
+                            periode_budget +
+                            ", Nominal Budget: " +
+                            nominal_budget
+                    );
+                    // Lakukan operasi lainnya yang Anda butuhkan
+                });
+
+            // Function to handle form submission for Pengeluaran
+            document
+                .getElementById("form-pengeluaran")
+                .addEventListener("submit", function (event) {
+                    event.preventDefault(); // Prevent form submission
+                    var nominal_pengeluaran = document.getElementById(
+                        "nominal_pengeluaran"
+                    ).value;
+                    var kategori_pengeluaran = document.getElementById(
+                        "kategori_pengeluaran"
+                    ).value;
+                    var deskripsi_pengeluaran = document.getElementById(
+                        "deskripsi_pengeluaran"
+                    ).value;
+                    // Lakukan sesuatu dengan nilai-nilai yang telah ditangkap, misalnya simpan ke database atau tampilkan pesan
+                    console.log(
+                        "Nominal Pengeluaran: " +
+                            nominal_pengeluaran +
+                            ", Kategori Pengeluaran: " +
+                            kategori_pengeluaran +
+                            ", Deskripsi Pengeluaran: " +
+                            deskripsi_pengeluaran
+                    );
+                    // Lakukan operasi lainnya yang Anda butuhkan
+                });
+
+            // Function to display previously saved data when the page loads
+            window.onload = function () {
+                // Tampilkan data yang disimpan saat halaman dimuat kembali
+                var savedNominalUang = localStorage.getItem("nominal_uang");
+                if (savedNominalUang) {
+                    alert(
+                        "Data Nominal Uang yang disimpan: " + savedNominalUang
+                    );
+                }
+            };
+        </script>
+    </body>
+</html>

@@ -1,12 +1,31 @@
+import {
+    getTransactionsPerDay,
+    getTotalIncomePerDay,
+    getTotalExpensesPerDay,
+} from "./model.js";
+
+const incomePerDay = getTotalIncomePerDay();
+const expensesPerDay = getTotalExpensesPerDay();
+const transactionPerDay = getTransactionsPerDay();
+
+const date = Object.keys(transactionPerDay).sort().slice(-7);
+const income = [];
+const expenses = [];
+
+date.forEach((day) => {
+    income.push(incomePerDay[day] || 0);
+    expenses.push(expensesPerDay[day] || 0);
+});
+
 var options = {
     series: [
         {
             name: "Pemasukan",
-            data: [44, 55, 57, 56, 61, 58, 63],
+            data: income,
         },
         {
             name: "Pengeluaran",
-            data: [76, 85, 101, 98, 87, 105, 91],
+            data: expenses,
         },
     ],
     chart: {
@@ -23,7 +42,7 @@ var options = {
             columnWidth: "55%",
             endingShape: "rounded",
             borderRadius: 8,
-            columnWidth: "42px",
+            columnWidth: "45px",
         },
     },
     dataLabels: {
@@ -31,7 +50,7 @@ var options = {
     },
     stroke: {
         show: true,
-        width: 10,
+        width: 5,
         colors: ["transparent"],
     },
     colors: ["#1A16F3", "#FCAA0B"],
@@ -39,12 +58,12 @@ var options = {
         show: false,
     },
     xaxis: {
-        categories: ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"],
+        categories: date,
         axisBorder: {
             show: false,
         },
 
-        tickPlacement: "on",
+        tickPlacement: "between",
         labels: {
             show: true,
             style: {
@@ -52,6 +71,8 @@ var options = {
                 fontSize: "14px",
                 fontFamily: "Inter, sans-serif",
             },
+            offsetX: 0,
+            offsetY: 0,
         },
         crosshairs: {
             show: false,
@@ -60,6 +81,9 @@ var options = {
     yaxis: {
         labels: {
             show: true,
+            formatter: function (val) {
+                return val.toLocaleString();
+            },
         },
     },
     fill: {
@@ -68,7 +92,7 @@ var options = {
     tooltip: {
         y: {
             formatter: function (val) {
-                return "Rp. " + val + ",-";
+                return "Rp. " + val.toLocaleString() + ",-";
             },
         },
     },
@@ -82,7 +106,6 @@ var options = {
             height: 15,
             radius: 5,
         },
-        offsetX: -10,
     },
 };
 

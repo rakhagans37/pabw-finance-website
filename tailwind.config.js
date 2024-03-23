@@ -14,6 +14,9 @@ module.exports = {
                 black: "#232323",
                 minus: "#FE5C73",
                 plus: "#16DBAA",
+                warning: "#BF7171",
+                update: "#73C7AE",
+                delete: "#DE6363",
             },
             borderRadius: {
                 inverse: "50% 0 0 50%",

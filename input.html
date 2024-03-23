@@ -118,12 +118,12 @@
                             <div class="flex flex-row gap-7 justify-center items-center py-6 px-9">
                                 <img src="./src/img/budgetWarning.svg" alt="">
                                 <div class="flex flex-col">
-                                    <h2>Sisa Alokasi Dana</h2>
-                                    <span>Rp. 120.000</span>
+                                    <h2 class="text-warning font-bold text-base">Sisa Alokasi Dana</h2>
+                                    <span class="font-semibold text-base" id="budget-remain">Rp. 120.000</span>
                                 </div>
                             </div>
                         </div>
-                        <form class="grid grid-cols-2 gap-10 gap-x-6">
+                        <form class="grid grid-cols-2 gap-10 gap-x-6" id="budgetingForm">
                             <label for="budget-category" class="col-span-2 flex flex-col gap-3">
                                 Keperluan
                                 <br>
@@ -134,9 +134,10 @@
                             <label for="budget-category" class="flex flex-col gap-3">
                                 Nominal
                                 <br>
-                                <input type="text" name="budget-category" id="budget-amount" placeholder="Ex: Makan, Minum, dll"
+                                <input type="number" name="budget-category" id="budget-amount" placeholder="100000 (tanpa titik)"
                                     class="rounded-2xl border-gray-300"
                                 >
+                                <h2 class="text-red-500" id="error-budgeting-nominal"></h2>
                             </label>
                             <label for="countries" class="text-base font-medium text-gray-900 flex flex-col gap-3">
                                 Satuan
@@ -145,44 +146,46 @@
                                     <option value="percentage">Persen</option>
                                   </select>
                             </label>
+                            <button type="submit" id="budgeting-submit" class="bg-blue w-48 h-12 rounded-2xl text-white mb-10">
+                                Simpan
+                            </button>
                         </form>
-                        <button class="bg-blue w-48 h-12 rounded-2xl text-white self-end mb-10">
-                            Simpan
-                        </button>
+                        
                     </div>
 
                     <!-- FORM INCOME -->
                     <div class="px-10 py-6 flex-col gap-6 hidden" id="income"> 
-                        <form class="grid grid-cols-2 gap-10 gap-x-6">
+                        <form class="grid grid-cols-2 gap-10 gap-x-6" id="incomeForm">
                             <label for="income-amount" class="col-span-2 flex flex-col gap-3">
                                 Nominal
                                 <br>
-                                <input type="text" name="income-amount" id="income-amount" placeholder="Ex: Makan, Minum, dll"
+                                <input type="number" name="income-amount" id="income-amount" placeholder="100000 (tanpa titik)"
                                     class="rounded-2xl border-gray-300"
                                 >
+                                <h2 class="text-red-500" id="error-income-nominal"></h2>
                             </label>
                         </form>
-                        <button class="bg-blue w-48 h-12 rounded-2xl text-white self-end mb-10">
+                        <button id="income-submit" class="bg-blue w-48 h-12 rounded-2xl text-white self-end mb-10" onclick="addAmount()">
                             Tambah
                         </button>
                     </div>
 
                     <!-- FORM EXPENSE -->
                     <div class="px-10 py-6 flex-col gap-6 hidden" id="expense">
-                        <form class="flex flex-col gap-10">
+                        <form class="flex flex-col gap-10" id="expenseForm">
                             <label for="expense-amount" class="col-span-2 flex flex-col gap-3">
                                 Nominal
                                 <br>
-                                <input type="text" name="expense-amount" id="expense-amount" placeholder="Contoh : Makan, Minum, dll"
+                                <input type="number" name="expense-amount" id="expense-amount" placeholder="100000 (tanpa titik)"
                                     class="rounded-2xl border-gray-300"
                                 >
+                                <h2 class="text-red-500" id="error-expense-nominal"></h2>
                             </label>
                             <label for="countries" class="text-base font-medium text-gray-900 flex flex-col gap-3">
                                 Kategori
                                 <select id="expense-category" class="border border-gray-300 text-gray-900 text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                                    <option selected value="number">Makan</option>
-                                    <option value="percentage">Minum</option>
-                                    <option value="percentage">Foya Foya</option>
+                                    <option selected value="Lainnya">Lainnya</option>
+                                    
                                 </select>
                             </label>
                             <label for="expense-description" class="flex flex-col gap-3">
@@ -192,7 +195,7 @@
                                 border-gray-300 text-start p-5"></textarea>
                             </label>
                         </form>
-                        <button class="bg-blue w-48 h-12 rounded-2xl text-white self-end mb-10">
+                        <button id="expense-submit" class="bg-blue w-48 h-12 rounded-2xl text-white self-end mb-10" onclick="minAmount()">
                             Simpan
                         </button>
                     </div>
@@ -203,23 +206,8 @@
     </body>
 
     <script src="/src/js/script.js"></script>
+    <script src="/src/js/inputScript.js"></script>
+    <script type="module" src="/src/js/model.js"></script>
+    <script type="module" src="/src/js/inputView.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-    <script>
-        function changeTab(to){
-            const parent = document.getElementById("tabs");
-            const a = parent.getElementsByTagName("a");
-
-            for (let i = 0; i < a.length; i++) {
-                if(a[i].ariaCurrent === "page"){
-                    a[i].classList.replace("tabs-active", "tabs-inactive");
-                    document.getElementById(a[i].ariaLabel).classList.replace("flex", "hidden");
-                    a[i].ariaCurrent = "false";
-                } else if(a[i].ariaLabel === to){
-                    a[i].classList.replace("tabs-inactive", "tabs-active");
-                    document.getElementById(a[i].ariaLabel).classList.replace("hidden", "flex");
-                    a[i].ariaCurrent = "page";
-                }
-            }
-        }
-    </script>
 </html>

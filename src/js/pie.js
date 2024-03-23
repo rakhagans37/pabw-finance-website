@@ -1,6 +1,14 @@
+import { getAllBudget } from "./model.js";
+
+const budget = getAllBudget();
+const budgetName = Object.keys(budget);
+const budgetAmount = Object.values(budget).map((budget) => budget.amount);
+
+console.log(budgetAmount);
+
 var options = {
-    series: [44, 55, 41, 17, 500],
-    labels: ["Makanan", "Minuman", "Foya Foya", "Me Time", "Lainnya"],
+    series: budgetAmount,
+    labels: budgetName,
 
     chart: {
         type: "donut",
