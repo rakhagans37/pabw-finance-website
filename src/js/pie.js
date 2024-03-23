@@ -4,17 +4,18 @@ var options = {
 
     chart: {
         type: "donut",
+        height: 350,
     },
     legend: {
         show: true,
         position: "bottom",
         markers: {
-            width: 30,
+            width: 20,
             height: 20,
             strokeWidth: 50,
             strokeColor: "#fff",
             fillColors: undefined,
-            radius: 1,
+            radius: 20,
             customHTML: undefined,
             onClick: undefined,
             offsetX: 0,
@@ -51,5 +52,5 @@ var options = {
         },
     },
 };
-var chart = new ApexCharts(document.querySelector("#myChart"), options);
+var chart = new ApexCharts(document.querySelector("#pie-chart"), options);
 chart.render();

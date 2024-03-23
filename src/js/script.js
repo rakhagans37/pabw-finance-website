@@ -10,9 +10,8 @@ if (localStorage.getItem("data") === null) {
 
 // Blueprint untuk transaksi, jadi ketika membuat transaksi baru, cukup membuat object baru dari class ini
 class Transaction {
-    constructor(amount, type, budgetCategory, description) {
+    constructor(amount, type, budgetCategory = null) {
         this.amount = amount;
-        this.description = description;
         this.type = type;
         this.budgetCategory = budgetCategory;
         this.date = new Date();
@@ -37,10 +36,9 @@ const data = JSON.parse(localStorage.getItem("data"));
 
 // Fungsi untuk menambah jumlah uang
 function addAmount() {
-    const amount = document.getElementById("amount").value;
-    const description = document.getElementById("description").value;
+    const amount = 100;
     const type = "Pemasukan";
-    const transaction = new Transaction(amount, type, description);
+    const transaction = new Transaction(amount, type);
 
     data.transactions.push(transaction);
     data.amount += parseInt(amount);
@@ -51,15 +49,9 @@ function addAmount() {
 
 function minAmount() {
     const amount = document.getElementById("amount").value;
-    const description = document.getElementById("description").value;
     const budgetCategory = document.getElementById("budgetCategory").value;
     const type = "Pengeluaran";
-    const transaction = new Transaction(
-        amount,
-        type,
-        budgetCategory,
-        description
-    );
+    const transaction = new Transaction(amount, type, budgetCategory);
 
     data.transactions.push(transaction);
     data.amount -= parseInt(amount);
@@ -72,17 +64,17 @@ function minAmount() {
     Budget = Pembagian budget untuk setiap kategori
 */
 // Budget
-function createBudget() {}
+function createBudget() {
+    const budgetName = document.getElementById("budgetName").value;
+    const amount = document.getElementById("amount").value;
+    const budget = new Budget(budgetName, amount);
+
+    data.budget[budgetName] = budget;
+    localStorage.setItem("data", JSON.stringify(data));
+
+    window.location.href = "index.html";
+}
 
 function updateBudget() {}
 
 function deleteBudget() {}
-
-// Read
-function displayAmount() {}
-
-function displayTransactions() {}
-
-function displayConsumption() {}
-
-function displayConsumptionPerBudget() {}

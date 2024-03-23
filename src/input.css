@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities
+@tailwind utilities;
+
+@layer components{
+    .tabs-active{
+        @apply inline-block p-4 text-blue border-b-2 border-blue rounded-t-lg;
+    }
+
+    .tabs-inactive{
+        @apply inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-secondaryTitle hover:border-secondaryTitle;
+    }
+}
