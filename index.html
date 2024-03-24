@@ -94,38 +94,39 @@
         
             <!-- Container -->
             <div class="p-10 flex flex-col gap-11">
-                <div class="grid grid-cols-4 gap-7">
+                <!-- Overview -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7">
                     <div class="bg-white rounded-3xl shadow-md">
-                        <div class="flex flex-row items-center justify-center gap-4">
-                            <img src="./src/img/income.svg" alt="income" class="py-6">
-                            <div class="flex flex-col gap-2">
+                        <div class="flex flex-col xl:flex-row items-center justify-center gap-4 py-6">
+                            <img src="./src/img/income.svg" alt="income">
+                            <div class="flex flex-col justify-center items-center xl:justify-start xl:items-start gap-2">
                                 <h3 class="font-normal text-thirdTitle text-base">Pemasukan</h3>
                                 <span class="font-semibold text-black text-xl" id="actual-incomes">Rp. 120.000</span>
                             </div>
                         </div> 
                     </div>
                     <div class="bg-white rounded-3xl shadow-md">
-                        <div class="flex flex-row items-center justify-center gap-4">
-                            <img src="./src/img/balance.svg" alt="income" class="py-6">
-                            <div class="flex flex-col gap-2">
+                        <div class="flex flex-col xl:flex-row items-center justify-center gap-4 py-6">
+                            <img src="./src/img/balance.svg" alt="income">
+                            <div class="flex flex-col justify-center items-center xl:justify-start xl:items-start gap-2">
                                 <h3 class="font-normal text-thirdTitle text-base">Uang sekarang</h3>
                                 <span class="font-semibold text-black text-xl" id="actual-amount">Rp. 120.000</span>
                             </div>
                         </div> 
                     </div>
                     <div class="bg-white rounded-3xl shadow-md">
-                        <div class="flex flex-row items-center justify-center gap-4">
-                            <img src="./src/img/expense.svg" alt="income" class="py-6">
-                            <div class="flex flex-col gap-2">
+                        <div class="flex flex-col xl:flex-row items-center justify-center gap-4 py-6">
+                            <img src="./src/img/expense.svg" alt="income">
+                            <div class="flex flex-col justify-center items-center xl:justify-start xl:items-start gap-2">
                                 <h3 class="font-normal text-thirdTitle text-base">Pengeluaran</h3>
                                 <span class="font-semibold text-black text-xl" id="actual-expenses">Rp. 120.000</span>
                             </div>
                         </div> 
                     </div>
                     <div class="bg-white rounded-3xl shadow-md">
-                        <div class="flex flex-row items-center justify-center gap-4">
-                            <img src="./src/img/saving.svg" alt="income" class="py-6">
-                            <div class="flex flex-col gap-2">
+                        <div class="flex flex-col xl:flex-row items-center justify-center gap-4 py-6">
+                            <img src="./src/img/saving.svg" alt="income">
+                            <div class="flex flex-col justify-center items-center xl:justify-start xl:items-start gap-2">
                                 <h3 class="font-normal text-thirdTitle text-base">Tabungan</h3>
                                 <span class="font-semibold text-black text-xl" id="actual-saving">Rp. 120.000</span>
                             </div>
@@ -134,7 +135,7 @@
                 </div>
 
                 <!-- Kegiatan Terakhir -->
-                <div class="flex flex-col gap-5">
+                <div class="flex flex-col gap-5 overflow-scroll">
                     <h2 class="font-semibold text-2xl text-secondaryTitle">Kegiatan Terakhir</h2>
                     <div class="bg-white rounded-3xl shadow-md">
                         <div class="py-6 px-9 w-full">
@@ -146,7 +147,8 @@
                 </div>
 
                 <!-- Grafik -->
-                <div class="grid grid-cols-3 gap-8 h-max">
+                <div class="grid grid-cols-1 xl:grid-cols-3 gap-8 h-max">
+                    <!-- Column Chart -->
                     <div class="col-span-2 flex flex-col gap-5">
                         <h2 class="text-secondaryTitle font-semibold text-2xl">Grafik Harian</h2>
                         <div class="bg-white rounded-3xl shadow-md">
@@ -154,9 +156,11 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Pie Chart -->
                     <div class="col-span-1 flex flex-col gap-5">
                         <h2 class="text-secondaryTitle font-semibold text-2xl">Grafik Alokasi Budget </h2>
-                        <div class="bg-white rounded-3xl shadow-md h-full flex justify-center items-center">
+                        <div class="bg-white rounded-3xl shadow-md h-full flex justify-center items-center py-5">
                             <div id="pie-chart">
                             </div>
                         </div>
@@ -224,10 +228,10 @@
         </div>
     </body>
 
-    <script src="/src/js/script.js"></script>
-    <script type="module" src="/src/js/pie.js"></script>
-    <script type="module" src="/src/js/column.js"></script>
-    <script type="module" src="/src/js/model.js"></script>
-    <script type="module" src="/src/js/indexView.js"></script>
+    <script src="./src/js/script.js"></script>
+    <script type="module" src="./src/js/pie.js"></script>
+    <script type="module" src="./src/js/column.js"></script>
+    <script type="module" src="./src/js/model.js"></script>
+    <script type="module" src="./src/js/indexView.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </html>

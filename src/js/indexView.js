@@ -82,7 +82,9 @@ function printLastThreeTransaction() {
         transactionStatus.classList.add(
             "font-normal",
             "text-thirdTitle",
-            "text-base"
+            "text-base",
+            "hidden",
+            "lg:block"
         );
         transactionStatus.textContent = "Selesai";
 

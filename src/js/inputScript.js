@@ -5,12 +5,7 @@
 
 // Blueprint untuk transaksi, jadi ketika membuat transaksi baru, cukup membuat object baru dari class ini
 class Transaction {
-    constructor(
-        amount,
-        type,
-        budgetCategory = "Pemasukan",
-        description = null
-    ) {
+    constructor(amount, type, budgetCategory, description = null) {
         this.amount = amount;
         this.type = type;
         this.budgetCategory = budgetCategory;
@@ -33,7 +28,8 @@ class Budget {
 function addAmount() {
     const amount = document.getElementById("income-amount").value;
     const type = "Pemasukan";
-    const transaction = new Transaction(amount, type);
+    const budgetCategory = "Pemasukan";
+    const transaction = new Transaction(amount, type, budgetCategory);
 
     data.transactions.unshift(transaction);
     data.amount += parseInt(amount);
@@ -74,7 +70,9 @@ document
 
         // Mengambil data dari form
         const amountType = document.getElementById("amount-type").value;
-        const budgetName = document.getElementById("budget-category").value;
+        const budgetName = capitalizeFirstLetter(
+            document.getElementById("budget-category").value
+        );
         const budgetAmount =
             amountType === "number"
                 ? parseInt(document.getElementById("budget-amount").value)
@@ -140,4 +138,8 @@ function getUnusedBudget(oldBudget, dataBudget) {
     console.log(totalCurrentBudget);
 
     return totalCurrentBudget;
+}
+
+function capitalizeFirstLetter(string) {
+    return string.replace(/(^\w|\s\w)/g, (m) => m.toUpperCase());
 }
