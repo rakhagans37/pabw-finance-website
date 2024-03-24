@@ -7,11 +7,11 @@ document.getElementById("budget-amount").onchange = function () {
     if (this.value > getRemainBudget()) {
         document.getElementById("budgeting-submit").disabled = true;
         document.getElementById("error-budgeting-nominal").innerHTML =
-            "Budget tidak cukup";
+            "Sisa saldo tidak mencukupi";
     } else if (this.value <= 0) {
         document.getElementById("budgeting-submit").disabled = true;
         document.getElementById("error-budgeting-nominal").innerHTML =
-            "Nominal tidak boleh <= 0";
+            "Nominal tidak harus lebih besar dari 0";
     } else {
         document.getElementById("budgeting-submit").disabled = false;
         document.getElementById("error-budgeting-nominal").innerHTML = "";
@@ -22,7 +22,7 @@ document.getElementById("expense-amount").onchange = function () {
     if (this.value <= 0) {
         document.getElementById("expense-submit").disabled = true;
         document.getElementById("error-expense-nominal").innerHTML =
-            "Nominal tidak boleh <= 0";
+            "Nominal tidak harus lebih besar dari 0";
     } else {
         document.getElementById("expense-submit").disabled = false;
         document.getElementById("error-expense-nominal").innerHTML = "";
@@ -33,14 +33,14 @@ document.getElementById("income-amount").onchange = function () {
     if (this.value <= 0) {
         document.getElementById("income-submit").disabled = true;
         document.getElementById("error-income-nominal").innerHTML =
-            "Nominal tidak boleh <= 0";
+            "Nominal tidak harus lebih besar dari 0";
     } else {
         document.getElementById("income-submit").disabled = false;
         document.getElementById("error-income-nominal").innerHTML = "";
     }
 };
 
-function printBudgetIntoSelect() {
+function printBudgetSelection() {
     const selectElement = document.getElementById("expense-category");
     selectElement.innerHTML = ""; // Clear existing options
     const budget = getAllBudget();
@@ -59,4 +59,4 @@ function printBudgetIntoSelect() {
     });
 }
 
-printBudgetIntoSelect();
+printBudgetSelection();

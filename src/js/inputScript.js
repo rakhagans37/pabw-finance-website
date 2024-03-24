@@ -1,8 +1,3 @@
-/* 
-    Amount = Jumlah uang yang dimiliki
-    Seluruh function yang berhubungan dengan amount berada dibawah sini
-*/
-
 // Blueprint untuk transaksi, jadi ketika membuat transaksi baru, cukup membuat object baru dari class ini
 class Transaction {
     constructor(amount, type, budgetCategory, description = null) {
@@ -24,6 +19,10 @@ class Budget {
     }
 }
 
+/* 
+    Amount = Jumlah uang yang dimiliki
+    Seluruh function yang berhubungan dengan amount berada dibawah sini
+*/
 // Fungsi untuk menambah jumlah uang
 function addAmount() {
     const amount = document.getElementById("income-amount").value;

@@ -179,6 +179,7 @@ function printDetailBudget() {
             "px-4",
             "rounded-3xl"
         );
+        updateButton.addEventListener("click", () => goToUpdatePage(name));
         updateButton.textContent = "Update";
 
         const deleteButton = document.createElement("button");

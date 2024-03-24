@@ -3,176 +3,296 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Aplikasi Keuangan</title>
-        <link rel="stylesheet" href="style.css" />
+        <title>Finance</title>
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
+            rel="stylesheet"
+        />
+        <link href="src/output.css" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     </head>
-    <body>
-        <div class="container">
-            <h1>Aplikasi Keuangan</h1>
-            <div class="tabs">
-                <button class="tab active" onclick="openTab('pemasukan')">
-                    Pemasukan
-                </button>
-                <button class="tab" onclick="openTab('budgeting')">
-                    Budgeting
-                </button>
-                <button class="tab" onclick="openTab('pengeluaran')">
-                    Pengeluaran
-                </button>
+    <body class="bg-primaryBg font-sans">
+        <button
+            data-drawer-target="logo-sidebar"
+            data-drawer-toggle="logo-sidebar"
+            aria-controls="logo-sidebar"
+            type="button"
+            class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        >
+            <span class="sr-only">Open sidebar</span>
+            <svg
+                class="w-6 h-6"
+                aria-hidden="true"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    clip-rule="evenodd"
+                    fill-rule="evenodd"
+                    d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
+                ></path>
+            </svg>
+        </button>
+
+        <aside
+            id="logo-sidebar"
+            class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+            aria-label="Sidebar"
+        >
+            <div
+                class="h-full w-full overflow-y-auto bg-white flex flex-col"
+            >
+                <a
+                    href="index.html"
+                    class="flex items-center justify-center h-[100px] mb-4"
+                >
+                    <img src="./src/img/logo.svg" alt="Flowbite Logo" />
+                </a>
+                <ul>
+                    <li class="h-16 box-border flex flex-row hover:bg-blue hover:bg-opacity-10">
+                        <a
+                            href="index.html"
+                            class="flex items-center gap-7"
+                        >
+                        <img src="./src/img/active.svg" alt="">
+                            <img
+                                class="text-gray-500 transition duration-75 w-[25px] h-[25px]"
+                                src="./src/img/home.svg"
+                            >
+                                
+                            </img>
+                            <span class=" text-blue font-medium text-lg">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="h-16 box-border flex flex-row hover:bg-blue hover:bg-opacity-10 grayscale contrast-0 hover:grayscale-0 hover:contrast-100">
+                        <a
+                            href="input.html"
+                            class="flex items-center gap-7"
+                        >
+                            <img src="./src/img/active.svg" alt="" class="opacity-0">
+                            <img
+                                class="text-gray-500 transition duration-75 w-[25px] h-[25px]"
+                                src="./src/img/budget.svg"
+                            >
+                                
+                            </img>
+                            <span class=" text-blue font-medium text-lg">Budgeting</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
+        </aside>
 
-            <div class="tab-content">
-                <div id="pemasukan" class="tab-pane active">
-                    <form action="#">
-                        <label for="nominal_uang">Nominal Uang:</label>
-                        <input
-                            type="number"
-                            id="nominal_uang"
-                            name="nominal_uang"
-                            required
-                        />
-                        <button type="submit">Simpan</button>
-                    </form>
+        <div class="sm:ml-64"> 
+            <nav class="w-full bg-white h-[100px] flex items-center shadow">
+                <h1 class="p-10 font-semibold text-3xl text-title">Account</h1>
+            </nav>
+        
+            <!-- Container -->
+            <div class="p-10 flex flex-col gap-11">
+                <!-- Overview -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7">
+                    <div class="bg-white rounded-3xl shadow-md">
+                        <div class="flex flex-col xl:flex-row items-center justify-center gap-4 py-6">
+                            <img src="./src/img/income.svg" alt="income">
+                            <div class="flex flex-col justify-center items-center xl:justify-start xl:items-start gap-2">
+                                <h3 class="font-normal text-thirdTitle text-base">Pemasukan</h3>
+                                <span class="font-semibold text-black text-xl" id="actual-incomes">Rp. 120.000</span>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="bg-white rounded-3xl shadow-md">
+                        <div class="flex flex-col xl:flex-row items-center justify-center gap-4 py-6">
+                            <img src="./src/img/balance.svg" alt="income">
+                            <div class="flex flex-col justify-center items-center xl:justify-start xl:items-start gap-2">
+                                <h3 class="font-normal text-thirdTitle text-base">Uang sekarang</h3>
+                                <span class="font-semibold text-black text-xl" id="actual-amount">Rp. 120.000</span>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="bg-white rounded-3xl shadow-md">
+                        <div class="flex flex-col xl:flex-row items-center justify-center gap-4 py-6">
+                            <img src="./src/img/expense.svg" alt="income">
+                            <div class="flex flex-col justify-center items-center xl:justify-start xl:items-start gap-2">
+                                <h3 class="font-normal text-thirdTitle text-base">Pengeluaran</h3>
+                                <span class="font-semibold text-black text-xl" id="actual-expenses">Rp. 120.000</span>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="bg-white rounded-3xl shadow-md">
+                        <div class="flex flex-col xl:flex-row items-center justify-center gap-4 py-6">
+                            <img src="./src/img/saving.svg" alt="income">
+                            <div class="flex flex-col justify-center items-center xl:justify-start xl:items-start gap-2">
+                                <h3 class="font-normal text-thirdTitle text-base">Tabungan</h3>
+                                <span class="font-semibold text-black text-xl" id="actual-saving">Rp. 120.000</span>
+                            </div>
+                        </div> 
+                    </div>
                 </div>
 
-                <div id="budgeting" class="tab-pane">
-                    <form action="#">
-                        <label for="nama_kategori">Nama Kategori:</label>
-                        <input
-                            type="text"
-                            id="nama_kategori"
-                            name="nama_kategori"
-                            required
-                        />
-
-                        <label for="tipe_budget">Tipe Budget:</label>
-                        <select id="tipe_budget" name="tipe_budget">
-                            <option value="persen">Persen</option>
-                            <option value="nominal">Nominal</option>
-                        </select>
-
-                        <label for="periode_budget">Periode Budget:</label>
-                        <select id="periode_budget" name="periode_budget">
-                            <option value="mingguan">Mingguan</option>
-                            <option value="bulanan">Bulanan</option>
-                        </select>
-
-                        <label for="nominal_budget">Nominal Budget:</label>
-                        <input
-                            type="number"
-                            id="nominal_budget"
-                            name="nominal_budget"
-                            required
-                        />
-
-                        <button type="submit">Simpan</button>
-                    </form>
+                <!-- Kegiatan Terakhir -->
+                <div class="flex flex-col gap-5 overflow-scroll">
+                    <h2 class="font-semibold text-2xl text-secondaryTitle">Kegiatan Terakhir</h2>
+                    <div class="bg-white rounded-3xl shadow-md">
+                        <div class="py-6 px-9 w-full">
+                            <div class="w-full flex flex-col gap-3" id="three-transaction-container">
+                                
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div id="pengeluaran" class="tab-pane">
-                    <form action="#">
-                        <label for="nominal_pengeluaran"
-                            >Nominal Pengeluaran:</label
-                        >
-                        <input
-                            type="number"
-                            id="nominal_pengeluaran"
-                            name="nominal_pengeluaran"
-                            required
-                        />
+                <!-- Grafik -->
+                <div class="grid grid-cols-1 xl:grid-cols-3 gap-8 h-max">
+                    <!-- Column Chart -->
+                    <div class="col-span-2 flex flex-col gap-5">
+                        <h2 class="text-secondaryTitle font-semibold text-2xl">Grafik Harian</h2>
+                        <div class="bg-white rounded-3xl shadow-md">
+                            <div id="column-chart" class="py-7 px-5">
+                            </div>
+                        </div>
+                    </div>
 
-                        <label for="kategori_pengeluaran"
-                            >Kategori Pengeluaran:</label
-                        >
-                        <select
-                            id="kategori_pengeluaran"
-                            name="kategori_pengeluaran"
-                        >
-                            <option value="makanan">Makanan</option>
-                            <option value="transportasi">Transportasi</option>
-                            <option value="hiburan">Hiburan</option>
-                            <option value="lainnya">Lainnya</option>
-                        </select>
+                    <!-- Pie Chart -->
+                    <div class="col-span-1 flex flex-col gap-5">
+                        <h2 class="text-secondaryTitle font-semibold text-2xl">Grafik Alokasi Budget </h2>
+                        <div class="bg-white rounded-3xl shadow-md h-full flex justify-center items-center py-5">
+                            <div id="pie-chart">
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                        <label for="deskripsi_pengeluaran"
-                            >Deskripsi Pengeluaran:</label
-                        >
-                        <input
-                            type="text"
-                            id="deskripsi_pengeluaran"
-                            name="deskripsi_pengeluaran"
-                        />
+                <!-- Budget Detail -->
+                <div class="flex flex-col gap-5">
+                    <h2 class="text-secondaryTitle font-semibold text-2xl">Budget Bulanan</h2>
+                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                            <thead class="text-xs text-secondaryTitle uppercase bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">
+                                        Keperluan
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Budget
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Pengeluaran
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Sisa Budget
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        <span class="sr-only">Update & Delete</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="budget-detail-table">
+                                <!-- Daftar detail anggaran bulanan akan ditampilkan di sini -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
-                        <button type="submit">Simpan</button>
-                    </form>
+                <!-- Script untuk fungsi update budget -->
+                <script>
+                    // Fungsi untuk mengupdate detail anggaran bulanan
+                    function updateBudgetDetail() {
+                        // Di sini Anda dapat menambahkan logika untuk mengambil data dari sumber yang sesuai
+                        // Misalnya, dari database atau penyimpanan lokal, dan mengubah isi tabel sesuai dengan data tersebut
+                        // Fungsi untuk mengambil data anggaran bulanan dari penyimpanan lokal browser
+                    function fetchData() {
+                        // Cek apakah penyimpanan lokal browser tersedia
+                        if (typeof(Storage) !== "undefined") {
+                            // Cek apakah data anggaran bulanan sudah tersimpan di penyimpanan lokal
+                            if (localStorage.getItem("budgetData")) {
+                                // Jika sudah tersimpan, ambil data dari penyimpanan lokal
+                                var budgetData = JSON.parse(localStorage.getItem("budgetData"));
+                                // Panggil fungsi untuk menampilkan data di tabel
+                                displayData(budgetData);
+                            } else {
+                                console.log("Data anggaran bulanan belum tersedia.");
+                            }
+                        } else {
+                            console.log("Penyimpanan lokal browser tidak tersedia.");
+                        }
+                    }
+
+                    // Fungsi untuk menampilkan data anggaran bulanan di tabel
+                    function displayData(data) {
+                        var tableBody = document.getElementById("budget-detail-table");
+
+                        // Bersihkan isi tabel sebelum menambahkan data baru
+                        tableBody.innerHTML = "";
+
+                        // Iterasi melalui data dan tambahkan baris baru ke tabel
+                        data.forEach(function(item) {
+                            var newRow = document.createElement("tr");
+                            newRow.innerHTML = `
+                                <td class="px-6 py-4">${item.keperluan}</td>
+                                <td class="px-6 py-4">${item.budget}</td>
+                                <td class="px-6 py-4">${item.pengeluaran}</td>
+                                <td class="px-6 py-4">${item.sisaBudget}</td>
+                                <td class="px-6 py-4">
+                                    <button onclick="updateItem(${item.id})">Update</button>
+                                    <button onclick="deleteItem(${item.id})">Delete</button>
+                                </td>
+                            `;
+                            tableBody.appendChild(newRow);
+                        });
+                    }
+
+                    // Panggil fungsi fetchData() saat halaman dimuat
+                    window.addEventListener('load', fetchData);
+
+                            
+                            // Contoh sederhana untuk menampilkan pesan di konsol
+                            console.log("Fungsi updateBudgetDetail() dijalankan.");
+                        }
+
+                        // Panggil fungsi updateBudgetDetail() saat halaman dimuat
+                        window.addEventListener('load', updateBudgetDetail);
+                </script>
+
+                <!-- History -->
+                <div class="flex flex-col gap-5">
+                    <h2 class="text-secondaryTitle font-semibold text-2xl">Riwayat Transaksi</h2>
+                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                            <thead class="text-xs text-secondaryTitle uppercase bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">
+                                        Deskripsi
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Kategori
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Tanggal
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Nominal
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="transaction-table">
+                                
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <script>
-            // Function to handle form submission for Budgeting
-            document
-                .getElementById("form-budgeting")
-                .addEventListener("submit", function (event) {
-                    event.preventDefault(); // Prevent form submission
-                    var nama_kategori =
-                        document.getElementById("nama_kategori").value;
-                    var tipe_budget =
-                        document.getElementById("tipe_budget").value;
-                    var periode_budget =
-                        document.getElementById("periode_budget").value;
-                    var nominal_budget =
-                        document.getElementById("nominal_budget").value;
-                    // Lakukan sesuatu dengan nilai-nilai yang telah ditangkap, misalnya simpan ke database atau tampilkan pesan
-                    console.log(
-                        "Nama Kategori: " +
-                            nama_kategori +
-                            ", Tipe Budget: " +
-                            tipe_budget +
-                            ", Periode Budget: " +
-                            periode_budget +
-                            ", Nominal Budget: " +
-                            nominal_budget
-                    );
-                    // Lakukan operasi lainnya yang Anda butuhkan
-                });
-
-            // Function to handle form submission for Pengeluaran
-            document
-                .getElementById("form-pengeluaran")
-                .addEventListener("submit", function (event) {
-                    event.preventDefault(); // Prevent form submission
-                    var nominal_pengeluaran = document.getElementById(
-                        "nominal_pengeluaran"
-                    ).value;
-                    var kategori_pengeluaran = document.getElementById(
-                        "kategori_pengeluaran"
-                    ).value;
-                    var deskripsi_pengeluaran = document.getElementById(
-                        "deskripsi_pengeluaran"
-                    ).value;
-                    // Lakukan sesuatu dengan nilai-nilai yang telah ditangkap, misalnya simpan ke database atau tampilkan pesan
-                    console.log(
-                        "Nominal Pengeluaran: " +
-                            nominal_pengeluaran +
-                            ", Kategori Pengeluaran: " +
-                            kategori_pengeluaran +
-                            ", Deskripsi Pengeluaran: " +
-                            deskripsi_pengeluaran
-                    );
-                    // Lakukan operasi lainnya yang Anda butuhkan
-                });
-
-            // Function to display previously saved data when the page loads
-            window.onload = function () {
-                // Tampilkan data yang disimpan saat halaman dimuat kembali
-                var savedNominalUang = localStorage.getItem("nominal_uang");
-                if (savedNominalUang) {
-                    alert(
-                        "Data Nominal Uang yang disimpan: " + savedNominalUang
-                    );
-                }
-            };
-        </script>
     </body>
+
+    
+    <script type="module" src="./src/js/pie.js"></script>
+    <script type="module" src="./src/js/column.js"></script>
+    <script type="module" src="./src/js/model.js"></script>
+    <script type="module" src="./src/js/indexView.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </html>

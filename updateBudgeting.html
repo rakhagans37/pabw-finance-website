@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Finance</title>
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
+            rel="stylesheet"
+        />
+        <link href="src/output.css" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    </head>
+    <body class="bg-primaryBg font-sans">
+        <button
+            data-drawer-target="logo-sidebar"
+            data-drawer-toggle="logo-sidebar"
+            aria-controls="logo-sidebar"
+            type="button"
+            class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+        >
+            <span class="sr-only">Open sidebar</span>
+            <svg
+                class="w-6 h-6"
+                aria-hidden="true"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    clip-rule="evenodd"
+                    fill-rule="evenodd"
+                    d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
+                ></path>
+            </svg>
+        </button>
+
+        <aside
+            id="logo-sidebar"
+            class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+            aria-label="Sidebar"
+        >
+            <div
+                class="h-full w-full overflow-y-auto bg-white flex flex-col"
+            >
+                <a
+                    href="index.html"
+                    class="flex items-center justify-center h-[100px] mb-4"
+                >
+                    <img src="./src/img/logo.svg" alt="Flowbite Logo" />
+                </a>
+                <ul class="font-medium">
+                    <li class="h-16 box-border flex flex-row hover:bg-blue hover:bg-opacity-10 grayscale contrast-0 hover:grayscale-0 hover:contrast-100">
+                        <a
+                            href="index.html"
+                            class="flex items-center gap-7"
+                        >
+                        <img src="./src/img/active.svg" alt="" class="opacity-0">
+                            <img
+                                class="text-gray-500 transition duration-75 w-[25px] h-[25px]"
+                                src="./src/img/home.svg"
+                            >
+                                
+                            </img>
+                            <span class=" text-blue font-medium text-lg">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="h-16 box-border flex flex-row hover:bg-blue hover:bg-opacity-10">
+                        <a
+                            href="input.html"
+                            class="flex items-center gap-7"
+                        >
+                            <img src="./src/img/active.svg" alt="">
+                            <img
+                                class="text-gray-500 transition duration-75 w-[25px] h-[25px]"
+                                src="./src/img/budget.svg"
+                            >
+                                
+                            </img>
+                            <span class=" text-blue font-medium text-lg">Budgeting</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <div class="sm:ml-64"> 
+            <nav class="w-full bg-white h-[100px] flex items-center shadow">
+                <h1 class="p-10 font-semibold text-3xl text-title">Update</h1>
+            </nav>
+
+            <!-- Container -->
+            <div class="p-10 flex flex-col gap-11">
+                <!-- Card -->
+                <div class="w-full bg-white rounded-3xl overflow-hidden">
+                    <div class="text-base text-center text-thirdTitle flex flex-col">
+                        <div class="p-8 font-medium">
+                            <ul class="flex flex-wrap border-b" id="tabs">
+                                <li class="me-2">
+                                    <a href="#budgeting" class="tabs-active" aria-current="page" aria-label="budgeting" onclick="changeTab('budgeting')">Budgeting</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- FORM BUDGETING -->
+                    <div class="px-10 py-6 flex flex-col gap-6" id="budgeting" aria-current="page">
+                        <div class="mt-5 bg-secondaryBg shadow-sm rounded-3xl flex self-center lg:self-end outline outline-red-400">
+                            <div class="flex flex-row gap-7 justify-center items-center py-6 px-9">
+                                <img src="./src/img/budgetWarning.svg" alt="">
+                                <div class="flex flex-col">
+                                    <h2 class="text-warning font-bold text-base">Sisa Alokasi Dana</h2>
+                                    <span class="font-semibold text-base" id="budget-remain">Rp. 120.000</span>
+                                </div>
+                            </div>
+                        </div>
+                        <form class="grid grid-cols-2 gap-10 gap-x-6" id="updateBudgetingForm">
+                            <label for="budget-category" class="col-span-2 flex flex-col gap-3">
+                                Keperluan
+                                <br>
+                                <input type="text" name="budget-category" id="budget-category" placeholder="Ex: Makan, Minum, dll"
+                                    class="rounded-2xl border-gray-300"
+                                >
+                            </label>
+                            <label for="budget-category" class="flex flex-col gap-3">
+                                Nominal
+                                <br>
+                                <input type="number" name="budget-category" id="budget-amount" placeholder="100000 (tanpa titik)"
+                                    class="rounded-2xl border-gray-300"
+                                >
+                                <h2 class="text-red-500" id="error-budgeting-nominal"></h2>
+                            </label>
+                            <label for="countries" class="text-base font-medium text-gray-900 flex flex-col gap-3">
+                                Satuan
+                                <select id="amount-type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option selected value="number">Nominal Rupiah</option>
+                                    <option value="percentage">Persen</option>
+                                  </select>
+                            </label>
+                            <button type="submit" id="budgeting-submit" class="bg-blue w-48 h-12 rounded-2xl text-white mb-10">
+                                Simpan
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+
+    <script src="./src/js/script.js"></script>
+    <script src="./src/js/inputScript.js"></script>
+    <script src="./src/js/updateBudgeting.js"></script>
+    <script type="module" src="./src/js/model.js"></script>
+    <script type="module" src="./src/js/inputView.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+</html>
