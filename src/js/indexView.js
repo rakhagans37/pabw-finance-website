@@ -62,6 +62,7 @@ function printLastThreeTransaction() {
 
         const transactionImg = document.createElement("img");
         transactionImg.src = "./src/img/transaction.svg";
+        transactionImg.classList.add("hidden", "lg:block");
         transactionImg.alt = "";
 
         const transactionDetailsDiv = document.createElement("div");
