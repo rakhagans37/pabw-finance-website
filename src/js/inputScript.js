@@ -95,10 +95,6 @@ document
         window.location.href = "index.html";
     });
 
-function updateBudget() {}
-
-function deleteBudget() {}
-
 // DOM Manipulation
 function changeTab(to) {
     const parent = document.getElementById("tabs");

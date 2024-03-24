@@ -20,6 +20,25 @@ document.getElementById("actual-incomes").innerHTML =
 document.getElementById("actual-saving").innerHTML =
     "Rp. " + (getTotalIncomes() - getTotalExpenses()).toLocaleString();
 
+// Mendapatkan budget yang tersisa
+function getUnusedBudget(oldBudget, dataBudget) {
+    const budget = dataBudget;
+    const budgetName = Object.keys(budget);
+    let totalCurrentBudget = oldBudget;
+
+    console.log(totalCurrentBudget);
+
+    for (const name of budgetName) {
+        if (name !== "Lainnya") {
+            totalCurrentBudget -= budget[name].amount;
+        }
+    }
+
+    console.log(totalCurrentBudget);
+
+    return totalCurrentBudget;
+}
+
 function printLastThreeTransaction() {
     const transaction = getAllTransactions();
 
@@ -183,6 +202,7 @@ function printDetailBudget() {
         updateButton.textContent = "Update";
 
         const deleteButton = document.createElement("button");
+
         deleteButton.classList.add(
             "bg-delete/70",
             "hover:bg-delete",
@@ -193,6 +213,19 @@ function printDetailBudget() {
             "rounded-3xl"
         );
         deleteButton.textContent = "Delete";
+
+        // Logic for delete button
+        deleteButton.addEventListener("click", function () {
+            const data = JSON.parse(localStorage.getItem("data"));
+            delete data.budget[name];
+            data.budget["Lainnya"] = {
+                budgetName: "Lainnya",
+                amount: getUnusedBudget(data.amount, data.budget),
+            };
+
+            localStorage.setItem("data", JSON.stringify(data));
+            window.location.reload();
+        });
 
         buttonContainer.appendChild(updateButton);
         buttonContainer.appendChild(deleteButton);

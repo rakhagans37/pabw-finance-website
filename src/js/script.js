@@ -10,3 +10,4 @@ if (localStorage.getItem("data") === null) {
 
 // Mengambil data dari local storage
 const data = JSON.parse(localStorage.getItem("data"));
+console.log(data);
