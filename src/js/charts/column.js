@@ -2,7 +2,7 @@ import {
     getTransactionsPerDay,
     getTotalIncomePerDay,
     getTotalExpensesPerDay,
-} from "./model.js";
+} from "../models/model.js";
 
 const incomePerDay = getTotalIncomePerDay();
 const expensesPerDay = getTotalExpensesPerDay();

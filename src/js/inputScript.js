@@ -32,6 +32,13 @@ function addAmount() {
 
     data.transactions.unshift(transaction);
     data.amount += parseInt(amount);
+
+    // Update budget Lainnya
+    data.budget["Lainnya"] = new Budget(
+        "Lainnya",
+        getUnusedBudget(data.budget, data.transactions)
+    );
+
     localStorage.setItem("data", JSON.stringify(data));
 
     window.location.href = "index.html";
@@ -69,10 +76,11 @@ document
 
         // Mengambil data dari form
         const amountType = document.getElementById("amount-type").value;
+        const budgetRange = document.getElementById("budget-range").value;
         const budgetName = capitalizeFirstLetter(
             document.getElementById("budget-category").value
         );
-        const budgetAmount =
+        let budgetAmount =
             amountType === "number"
                 ? parseInt(document.getElementById("budget-amount").value)
                 : parseInt(
@@ -80,6 +88,9 @@ document
                           (document.getElementById("budget-amount").value / 100)
                   );
 
+        if (budgetRange === "weekly") {
+            budgetAmount = budgetAmount * 4;
+        }
         // Membuat object budget
         const budget = new Budget(budgetName, budgetAmount);
         data.budget[budgetName] = budget;
@@ -87,7 +98,7 @@ document
         // Update budget Lainnya
         data.budget["Lainnya"] = new Budget(
             "Lainnya",
-            getUnusedBudget(data.amount, data.budget)
+            getUnusedBudget(data.budget, data.transactions)
         );
 
         // Menambahkan budget ke data dan push ke localstorage
@@ -117,22 +128,36 @@ function changeTab(to) {
     }
 }
 
-function getUnusedBudget(oldBudget, dataBudget) {
+function getTotalIncomePerMonth(transactionsData) {
+    console.log(transactionsData);
+    const income = transactionsData.filter((transaction) => {
+        return transaction.type == "Pemasukan";
+    });
+
+    var totalIncome = 0;
+    income.forEach((income) => {
+        const date = new Date();
+
+        if (new Date(income.date).getMonth() === date.getMonth()) {
+            totalIncome += parseInt(income.amount);
+        }
+    });
+
+    return totalIncome;
+}
+
+function getUnusedBudget(dataBudget, dataTransactions) {
     const budget = dataBudget;
     const budgetName = Object.keys(budget);
-    let totalCurrentBudget = oldBudget;
-
-    console.log(totalCurrentBudget);
+    let totalCurrentBudget = 0;
 
     for (const name of budgetName) {
         if (name !== "Lainnya") {
-            totalCurrentBudget -= budget[name].amount;
+            totalCurrentBudget += budget[name].amount;
         }
     }
 
-    console.log(totalCurrentBudget);
-
-    return totalCurrentBudget;
+    return getTotalIncomePerMonth(dataTransactions) - totalCurrentBudget;
 }
 
 function capitalizeFirstLetter(string) {

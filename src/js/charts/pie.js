@@ -1,4 +1,4 @@
-import { getAllBudget } from "./model.js";
+import { getAllBudget } from "../models/model.js";
 
 const budget = getAllBudget();
 const budgetName = Object.keys(budget);

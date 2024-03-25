@@ -89,7 +89,7 @@
 
         <div class="sm:ml-64"> 
             <nav class="w-full bg-white h-[100px] flex items-center shadow">
-                <h1 class="p-10 font-semibold text-3xl text-title">Account</h1>
+                <h1 class="p-10 font-semibold text-3xl text-title">Budgeting</h1>
             </nav>
 
             <!-- Container -->
@@ -123,8 +123,8 @@
                                 </div>
                             </div>
                         </div>
-                        <form class="grid grid-cols-2 gap-10 gap-x-6" id="budgetingForm">
-                            <label for="budget-category" class="col-span-2 flex flex-col gap-3">
+                        <form class="grid grid-cols-1 lg:grid-cols-3 gap-10 gap-x-6" id="budgetingForm">
+                            <label for="budget-category" class="col-span-1 lg:col-span-3 flex flex-col gap-3">
                                 Keperluan
                                 <br>
                                 <input type="text" name="budget-category" id="budget-category" placeholder="Ex: Makan, Minum, dll"
@@ -144,6 +144,13 @@
                                 <select id="amount-type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                     <option selected value="number">Nominal Rupiah</option>
                                     <option value="percentage">Persen</option>
+                                  </select>
+                            </label>
+                            <label for="countries" class="text-base font-medium text-gray-900 flex flex-col gap-3">
+                                Rentang Waktu
+                                <select id="budget-range" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option selected value="monthly">Bulanan</option>
+                                    <option value="weekly">Mingguan</option>
                                   </select>
                             </label>
                             <button type="submit" id="budgeting-submit" class="bg-blue w-48 h-12 rounded-2xl text-white mb-10">
@@ -207,7 +214,7 @@
 
     <script src="./src/js/script.js"></script>
     <script src="./src/js/inputScript.js"></script>
-    <script type="module" src="./src/js/model.js"></script>
-    <script type="module" src="./src/js/inputView.js"></script>
+    <script type="module" src="./src/js/models/model.js"></script>
+    <script type="module" src="./src/js/views/inputView.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </html>
