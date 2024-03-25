@@ -76,6 +76,14 @@ export function getAllTransactions() {
 }
 
 export function getAllBudget() {
+    if (getTotalIncomePerMonth() == 0) {
+        data.budget = {
+            Lainnya: {
+                amount: 0,
+                budgetCategory: "Lainnya",
+            },
+        };
+    }
     return data.budget;
 }
 
@@ -195,4 +203,8 @@ export function getTotalExpensesPerDay() {
     }
 
     return totalTransactionPerDay;
+}
+
+export function getDate() {
+    return new Date();
 }

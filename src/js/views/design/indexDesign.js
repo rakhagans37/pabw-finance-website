@@ -9,6 +9,7 @@ import {
     getTotalIncomePerMonth,
     getTotalExpensesPerMonth,
     getSaving,
+    getDate,
 } from "../../models/model.js";
 
 const formatCurrency = (amount) => {
@@ -300,4 +301,17 @@ export function printAllTransaction() {
         const tableRow = createTransactionTableRow(transaction);
         transactionTable.appendChild(tableRow);
     });
+}
+
+export function printDate() {
+    const dateElement = document.getElementById("date");
+    const date = getDate();
+    const options = {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+    };
+    const formattedDate = date.toLocaleDateString("id-ID", options);
+    dateElement.textContent = formattedDate;
 }

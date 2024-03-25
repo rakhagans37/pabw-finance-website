@@ -84,7 +84,7 @@ document
             amountType === "number"
                 ? parseInt(document.getElementById("budget-amount").value)
                 : parseInt(
-                      data.amount *
+                      getTotalIncomePerMonth() *
                           (document.getElementById("budget-amount").value / 100)
                   );
 
@@ -162,4 +162,21 @@ function getUnusedBudget(dataBudget, dataTransactions) {
 
 function capitalizeFirstLetter(string) {
     return string.replace(/(^\w|\s\w)/g, (m) => m.toUpperCase());
+}
+
+function getTotalIncomePerMonth() {
+    const income = data.transactions.filter((transaction) => {
+        return transaction.type == "Pemasukan";
+    });
+
+    var totalIncome = 0;
+    income.forEach((income) => {
+        const date = new Date();
+
+        if (new Date(income.date).getMonth() === date.getMonth()) {
+            totalIncome += parseInt(income.amount);
+        }
+    });
+
+    return totalIncome;
 }
